@@ -25,16 +25,16 @@
 
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
+                           <button id="decrease" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="input-area" type="text" class="form-control text-center" value="1">
+                           <button id="increase" class="btn btn-default "><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$1219</h5>
+                        <h5>$ <span id="mobile-price">1219</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
                </div>
-
+                                   <!-- Mobile-case area -->
                <div class="cart-item">
                   <div class="row">
                      <div class="col-md-7 center-item mx-auto">
@@ -43,12 +43,11 @@
                      </div>
                      <div class="col-md-5 center-item">
                         <div class="input-group number-spinner">
-                           <button class="btn btn-default"><i class="fas fa-minus"></i></button>
-                           <input type="text" class="form-control text-center" value="1">
-                           <button class="btn btn-default"><i class="fas fa-plus"></i></button>
-
+                           <button id="decrease-2" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                           <input id="input-area-2" type="text" class="form-control text-center" value="1">
+                           <button id="increase-2" class="btn btn-default"><i class="fas fa-plus"></i></button>
                         </div>
-                        <h5>$59</h5>
+                        <h5>$ <span id="Case-price"> 59</span></h5>
                         <img src="images/remove.png" alt="" class="remove-item">
                      </div>
                   </div>
@@ -64,7 +63,7 @@
                      </div>
 
                      <div class="col-md-4 status">
-                        <h5>$1,278</h5>
+                        <h5>$ <span id="subtotal">1,278</span></h5>
                         <h5>$0</h5>
                         <h5>$1,278</h5>
                      </div>
@@ -77,6 +76,82 @@
          </div>
       </div>
    </section>
+   <script>
+      let globalPrice = 0; 
+      const increaseBtn = document.getElementById("increase");
+      increaseBtn.addEventListener("click", function(){
+         const inputArea = document.getElementById('input-area').value++;
+         const item = parseFloat(inputArea);
+         document.getElementById('increase').value = item;
+
+         const quantity = document.getElementById("input-area").value
+
+         const price = 1219;
+         const totalPrice = quantity*price;
+         document.getElementById("mobile-price").innerText = totalPrice;
+
+         const subTotalPrice = document.getElementById('subtotal').innerText;
+         const subTotal = parseFloat(subTotalPrice);
+         globalPrice = globalPrice + totalPrice;
+         document.getElementById('subtotal').innerText = globalPrice;
+      })
+      const removeItemNum = document.getElementById('decrease');
+      removeItemNum.addEventListener('click', function(){
+         const removeNum = document.getElementById('input-area').value--;
+         const itemPrice = parseFloat(removeNum);
+
+         const quantity = document.getElementById('input-area').value
+
+         const price = 1219;
+         const totalPrice = quantity*price;
+         document.getElementById('mobile-price').innerText = totalPrice;
+
+         const subTotalPrice = document.getElementById('subtotal').innerText;
+         const subTotal = parseFloat(subTotalPrice);
+         const globalPrice = subTotal - totalPrice;
+         document.getElementById('subtotal').innerText = globalPrice;
+
+      })
+                              // case area
+      const caseIncreaseBtn = document.getElementById("increase-2");
+      caseIncreaseBtn.addEventListener("click", function(){
+         const inputArea2 = document.getElementById('input-area-2').value++;
+         const caseItem = parseFloat(inputArea2) + increase-2;
+         document.getElementById('increase-2').value = caseItem;
+
+         const caseQuantity = document.getElementById("input-area-2").value
+
+         const price = 59;
+         const caseTotalPrice = caseQuantity*price;
+         document.getElementById("Case-price").innerText = caseTotalPrice;
+
+         const caseSubTotalPrice = document.getElementById('subtotal').innerText;
+         const subTotal = parseFloat(caseSubTotalPrice);
+         globalPrice = globalPrice + caseTotalPrice;
+         document.getElementById('subtotal').innerText = globalPrice;
+
+         const quantity = document.getElementById("input-area-2").value
+      })
+      const caseRemoveItemNum = document.getElementById('decrease-2');
+      caseRemoveItemNum.addEventListener('click', function(){
+         const caseRemoveNum = document.getElementById('input-area-2').value--;
+         const itemPrice = parseFloat(caseRemoveNum);
+
+         const quantity = document.getElementById('input-area-2').value
+
+         const caseQuantity = document.getElementById("input-area-2").value
+
+         const price = 59;
+         const caseTotalPrice = caseQuantity*price;
+         document.getElementById("Case-price").innerText = caseTotalPrice;
+
+         const caseSubTotalPrice = document.getElementById('subtotal').innerText;
+         const subTotal = parseFloat(caseSubTotalPrice);
+         globalPrice = globalPrice - caseTotalPrice;
+         document.getElementById('subtotal').innerText = globalPrice;
+
+      })
+   </script>
 </body>
 
 </html>
